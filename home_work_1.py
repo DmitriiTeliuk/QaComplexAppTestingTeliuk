@@ -62,7 +62,7 @@ class TestFirstFive:
         sleep(1)
         # add user password
         user_password = open_link.find_element(by=By.XPATH, value=locators.sign_in_password_field)
-        user_name.clear()
+        user_password.clear()
         user_password.send_keys("goldenmask3421L")
         sleep(1)
         # click SIGN IN button
