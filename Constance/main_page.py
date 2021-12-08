@@ -1,2 +1,2 @@
 class MainPageConst:
-    create_post_butt = "//a[@href='/create-post']"
+    CREATE_POST_BUTTON = "//a[@href='/create-post']"
