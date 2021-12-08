@@ -10,6 +10,6 @@ class MainPage(BasePage):
         self.constance = MainPageConst()
 
     def is_displayed_create_post_button(self):
-        create_post_button = self.driver.find_element(by=By.XPATH, locator=self.constance.CREATE_POST_BUTTON)
+        create_post_button = self.driver.find_element(by=By.XPATH, value=self.constance.CREATE_POST_BUTTON)
         assert create_post_button.is_displayed()
 
