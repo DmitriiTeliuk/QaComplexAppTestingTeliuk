@@ -95,6 +95,5 @@ class TestStartPage:
         2.Залогиниться  с логин/пароль НЕсуществующего юзера
         Ожидание: Ошибка юзер не найден. Сообщение:'Error'
         """
-        open_start_page.log_in("asdksdja", "sjakd222")
+        open_start_page.log_in("asdksd@jax.com", "sjakd222")
         open_start_page.is_displayed_login_message_alert()
-
