@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 
 from QaComplexAppTestingTeliuk.Constance.main_page import MainPageConst
 from QaComplexAppTestingTeliuk.pages.base_page import BasePage
+from QaComplexAppTestingTeliuk.pages.start_page import StartPage
 
 
 class MainPage(BasePage):
@@ -10,6 +11,9 @@ class MainPage(BasePage):
         self.constance = MainPageConst()
 
     def is_displayed_create_post_button(self):
-        create_post_button = self.driver.find_element(by=By.XPATH, value=self.constance.CREATE_POST_BUTTON)
+        create_post_button = self.driver.find_element(by=By.XPATH, value=self.constance.CREATE_POST_BUTTON_XPATH)
         assert create_post_button.is_displayed()
 
+    def log_out(self):
+        self.driver.find_element(by=By.XPATH, value=self.constance.LOG_OUT_BUTTON_XPATH).click()
+        return StartPage(self.driver)
