@@ -3,9 +3,8 @@ from time import sleep
 
 import pytest
 from selenium.webdriver.chrome import webdriver
-from selenium.webdriver.common.by import By
 
-import locators
+
 from QaComplexAppTestingTeliuk.Constance.base import BaseConst
 from QaComplexAppTestingTeliuk.pages.start_page import StartPage
 
