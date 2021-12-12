@@ -1,15 +1,13 @@
 import random
 from time import sleep
-
 import pytest
 from selenium.webdriver.chrome import webdriver
-
-
 from QaComplexAppTestingTeliuk.Constance.base import BaseConst
+from QaComplexAppTestingTeliuk.conftest import BaseTest
 from QaComplexAppTestingTeliuk.pages.start_page import StartPage
 
 
-class TestStartPage:
+class TestStartPage(BaseTest):
     @pytest.fixture(scope="function")
     def driver(self):
         driver = webdriver.WebDriver(executable_path=BaseConst.DRIVER_PATH)
@@ -47,8 +45,10 @@ class TestStartPage:
         user_password = f"MYTESTPASS{self.random_num()}"
         # register new user
         main_page = open_start_page.reg_new_user(user_name, user_email, user_password)
-        sleep(3)
+        self.log.info("Registration fields are filled and 'sign in' button clicked")
+        sleep(2)
         main_page.is_displayed_create_post_button()
+        self.log.info("test_new_reg completed successfully")
 
     def test_log_in(self, open_start_page, reg_user_and_sign_out):
         """
@@ -58,7 +58,9 @@ class TestStartPage:
         """
         username, password = reg_user_and_sign_out
         login = open_start_page.log_in(username, password)
+        self.log.info("Log in credentials added.'Sign IN' button clicked")
         login.is_displayed_create_post_button()
+        self.log.info("test_log_in completed successfully")
 
     def test_base_validation_messages_in_reg_fields(self, open_start_page):
         """
@@ -71,12 +73,16 @@ class TestStartPage:
         sleep(1)
         name_alert = open_start_page.get_new_user_name_field_alert()
         assert name_alert == "Username must be at least 3 characters."
+        self.log.info("name alert checked")
 
         email_alert = open_start_page.get_new_user_email_field_alert()
         assert email_alert == "You must provide a valid email address."
+        self.log.info("email alert checked")
 
         password_alert = open_start_page.get_new_user_password_field_alert()
         assert password_alert == "Password must be at least 12 characters."
+        self.log.info("password alert checked")
+        self.log.info("test_base_validation_messages_in_reg_fields completed successfully")
 
     def test_reg_user_name_validation_message_2(self, open_start_page):
         """
@@ -86,8 +92,11 @@ class TestStartPage:
         'Username can only contain letters and numbers.'
         """
         open_start_page.fill_new_user_name("Dmitrii Teliuk")
+        self.log.info("invalid name added to new_user name field")
         name_alert = open_start_page.get_new_user_name_field_alert()
         assert name_alert == "Username can only contain letters and numbers."
+        self.log.info("'Name Alert' message  is correct")
+        self.log.info("test_reg_user_name_validation_message_2 completed successfully")
 
     def test_log_in_with_no_exist_user(self, open_start_page):
         """
@@ -96,4 +105,7 @@ class TestStartPage:
         Ожидание: Ошибка юзер не найден. Сообщение:'Error'
         """
         open_start_page.log_in("asdksd@jax.com", "sjakd222")
+        self.log.info("Non existent login/password added")
         open_start_page.is_displayed_login_message_alert()
+        self.log.info("'Log in Alert' message  is correct")
+        self.log.info("test_log_in_with_no_exist_user completed successfully")
