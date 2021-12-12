@@ -81,8 +81,7 @@ class TestStartPage(BaseTest):
 
         password_alert = open_start_page.get_new_user_password_field_alert()
         assert password_alert == "Password must be at least 12 characters."
-        self.log.info("password alert checked")
-        self.log.info("test_base_validation_messages_in_reg_fields completed successfully")
+        self.log.info("password alert checked. test_base_validation_messages_in_reg_fields completed successfully")
 
     def test_reg_user_name_validation_message_2(self, open_start_page):
         """
@@ -95,8 +94,7 @@ class TestStartPage(BaseTest):
         self.log.info("invalid name added to new_user name field")
         name_alert = open_start_page.get_new_user_name_field_alert()
         assert name_alert == "Username can only contain letters and numbers."
-        self.log.info("'Name Alert' message  is correct")
-        self.log.info("test_reg_user_name_validation_message_2 completed successfully")
+        self.log.info("'Name Alert' message  is correct/ test_reg_user_name_validation_message_2 completed successfully")
 
     def test_log_in_with_no_exist_user(self, open_start_page):
         """
@@ -107,5 +105,4 @@ class TestStartPage(BaseTest):
         open_start_page.log_in("asdksd@jax.com", "sjakd222")
         self.log.info("Non existent login/password added")
         open_start_page.is_displayed_login_message_alert()
-        self.log.info("'Log in Alert' message  is correct")
-        self.log.info("test_log_in_with_no_exist_user completed successfully")
+        self.log.info("'Log in Alert' message  is correct. test_log_in_with_no_exist_user completed successfully")
