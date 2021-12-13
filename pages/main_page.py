@@ -11,11 +11,11 @@ class MainPage(BasePage):
         self.constance = MainPageConst()
 
     def is_displayed_create_post_button(self):
-        create_post_button = self.driver.find_element(by=By.XPATH, value=self.constance.CREATE_POST_BUTTON_XPATH)
+        create_post_button = self.wait_until_find_element(by=By.XPATH, value=self.constance.CREATE_POST_BUTTON_XPATH)
         assert create_post_button.is_displayed()
         self.log.info("'create post' button is displayed")
 
     def log_out(self):
-        self.driver.find_element(by=By.XPATH, value=self.constance.LOG_OUT_BUTTON_XPATH).click()
+        self.wait_until_find_element(by=By.XPATH, value=self.constance.LOG_OUT_BUTTON_XPATH).click()
         self.log.info("'Log out' button clicked")
         return StartPage(self.driver)

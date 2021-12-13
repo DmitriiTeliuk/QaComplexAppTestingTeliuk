@@ -11,6 +11,7 @@ class TestStartPage(BaseTest):
     @pytest.fixture(scope="function")
     def driver(self):
         driver = webdriver.WebDriver(executable_path=BaseConst.DRIVER_PATH)
+        # driver.implicitly_wait(1)
         yield driver
         driver.close()
 
@@ -26,7 +27,6 @@ class TestStartPage(BaseTest):
         user_password = f"MYTESTPASS{self.random_num()}"
         # register new user
         main_page = open_start_page.reg_new_user(user_name, user_email, user_password)
-        sleep(2)
         main_page.log_out()
         return user_name, user_password
 
@@ -46,7 +46,6 @@ class TestStartPage(BaseTest):
         # register new user
         main_page = open_start_page.reg_new_user(user_name, user_email, user_password)
         self.log.info("Registration fields are filled and 'sign in' button clicked")
-        sleep(2)
         main_page.is_displayed_create_post_button()
         self.log.info("test_new_reg completed successfully")
 
@@ -68,9 +67,7 @@ class TestStartPage(BaseTest):
         2. Нажать Sign UP
         Ожидание: Вылетают 3 сообщения об ошибке, юзер нe зарегистрирован
         """
-        sleep(1)
-        open_start_page.click_sign_up_button()
-        sleep(1)
+        open_start_page.sign_up_button_click()
         name_alert = open_start_page.get_new_user_name_field_alert()
         assert name_alert == "Username must be at least 3 characters."
         self.log.info("name alert checked")
