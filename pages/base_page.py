@@ -1,4 +1,6 @@
 import logging
+
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -12,7 +14,6 @@ class BasePage:
 
     def fill_field(self, by, locator, some_value):
         user_field = self.wait_until_find_element(by=by, value=locator)
-        # user_field = self.driver.find_element(by=by, value=locator)
         self.log.info("Field found")
         user_field.clear()
         user_field.send_keys(some_value)
@@ -23,4 +24,4 @@ class BasePage:
 
     def wait_until_find_visible_and_clickable(self, by, value):
         element = self.wait_until_find_element(by, value)
-        return self.wait.until(EC.element_to_be_clickable(element))
+        return self.wait.until(EC.element_to_be_clickable((by, value)))

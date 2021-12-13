@@ -67,7 +67,7 @@ class TestStartPage(BaseTest):
         2. Нажать Sign UP
         Ожидание: Вылетают 3 сообщения об ошибке, юзер нe зарегистрирован
         """
-        open_start_page.sign_up_button_click()
+        open_start_page.sign_up_button_click(0)
         name_alert = open_start_page.get_new_user_name_field_alert()
         assert name_alert == "Username must be at least 3 characters."
         self.log.info("name alert checked")
