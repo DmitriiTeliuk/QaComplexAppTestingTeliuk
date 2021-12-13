@@ -69,5 +69,5 @@ class StartPage(BasePage):
 
     @wait_until_okk(timeout=15, period=1)
     def sign_up_button_click(self):
-        self.wait_until_find_element(by=By.XPATH, value=self.constance.BUTTON_SIGN_UP_XPATH).click()
+        self.wait_until_find_visible_and_clickable(by=By.XPATH, value=self.constance.BUTTON_SIGN_UP_XPATH).click()
 
