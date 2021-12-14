@@ -2,7 +2,7 @@ import random
 from time import sleep
 import pytest
 from selenium.webdriver.chrome import webdriver
-from QaComplexAppTestingTeliuk.Constance.base import BaseConst
+from QaComplexAppTestingTeliuk.constance.base import BaseConst
 from QaComplexAppTestingTeliuk.conftest import BaseTest
 from QaComplexAppTestingTeliuk.pages.start_page import StartPage
 

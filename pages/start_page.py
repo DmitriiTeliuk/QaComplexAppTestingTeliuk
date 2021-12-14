@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from QaComplexAppTestingTeliuk.Constance.start_page import StartPageConst
+from QaComplexAppTestingTeliuk.constance.start_page import StartPageConst
 from QaComplexAppTestingTeliuk.pages.base_page import BasePage
 from QaComplexAppTestingTeliuk.pages.decor import wait_until_okk
 
@@ -69,7 +69,7 @@ class StartPage(BasePage):
         self.wait_until_find_visible_and_clickable(by=By.XPATH, value=self.constance.BUTTON_SIGN_UP_XPATH).click()
         if verify:
             # Wait until main_page button appears
-            from QaComplexAppTestingTeliuk.Constance.main_page import MainPageConst
+            from QaComplexAppTestingTeliuk.constance.main_page import MainPageConst
             assert self.wait_until_find_element(by=By.XPATH, value=MainPageConst.CREATE_POST_BUTTON_XPATH).is_displayed()
 
 

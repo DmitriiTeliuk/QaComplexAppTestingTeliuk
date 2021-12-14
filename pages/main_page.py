@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from QaComplexAppTestingTeliuk.Constance.main_page import MainPageConst
+from QaComplexAppTestingTeliuk.constance.main_page import MainPageConst
 from QaComplexAppTestingTeliuk.pages.base_page import BasePage
 from QaComplexAppTestingTeliuk.pages.start_page import StartPage
 
