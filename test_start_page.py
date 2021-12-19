@@ -1,9 +1,9 @@
 import random
-from time import sleep
 import pytest
 from selenium.webdriver.chrome import webdriver
 from constance.base import BaseConst
 from conftest import BaseTest
+from pages.data_for_tests import User
 from pages.start_page import StartPage
 
 
@@ -21,30 +21,31 @@ class TestStartPage(BaseTest):
         return StartPage(driver)
 
     @pytest.fixture(scope="function")
-    def reg_user_and_sign_out(self, open_start_page):
-        user_name = f"User{self.random_num()}"
-        user_email = f"BOX{self.random_num()}@testmail.com"
-        user_password = f"MYTESTPASS{self.random_num()}"
-        # register new user
-        main_page = open_start_page.reg_new_user(user_name, user_email, user_password)
+    def random_user(self):
+        """Create values for user"""
+        user = User()
+        user.fill_user_data()
+        return user
+
+    @pytest.fixture(scope="function")
+    def reg_user_and_sign_out(self, open_start_page, random_user):
+        """register new user"""
+        main_page = open_start_page.reg_new_user(random_user)
         main_page.log_out()
-        return user_name, user_password
+        return random_user
 
     def random_num(self):
         return str(random.choice(range(11111, 99999)))
 
-    def test_new_reg(self, open_start_page):
+    def test_new_reg(self, open_start_page, random_user):
         """ 1.Загрузить страницу
             2.Ввести имя нового юзера
             3.Ввести валидную почту
             4.Ввести валидный пароль
             5. Нажать Sign UP Ожидание: Юзер успешно зарегистрирован
         """
-        user_name = f"User{self.random_num()}"
-        user_email = f"BOX{self.random_num()}@testmail.com"
-        user_password = f"MYTESTPASS{self.random_num()}"
         # register new user
-        main_page = open_start_page.reg_new_user(user_name, user_email, user_password)
+        main_page = open_start_page.reg_new_user(random_user)
         self.log.info("Registration fields are filled and 'sign in' button clicked")
         main_page.is_displayed_create_post_button()
         self.log.info("test_new_reg completed successfully")
@@ -55,8 +56,7 @@ class TestStartPage(BaseTest):
         2.Ввести  логин / пароль уже существующего юзера
         Ожидание: Юзер  успешно залогинен.
         """
-        username, password = reg_user_and_sign_out
-        login = open_start_page.log_in(username, password)
+        login = open_start_page.log_in(reg_user_and_sign_out)
         self.log.info("Log in credentials added.'Sign IN' button clicked")
         login.is_displayed_create_post_button()
         self.log.info("test_log_in completed successfully")
@@ -93,13 +93,13 @@ class TestStartPage(BaseTest):
         assert name_alert == "Username can only contain letters and numbers."
         self.log.info("'Name Alert' message  is correct/ test_reg_user_name_validation_message_2 completed successfully")
 
-    def test_log_in_with_no_exist_user(self, open_start_page):
+    def test_log_in_with_no_exist_user(self, open_start_page, random_user):
         """
         1.Загрузить страницу
         2.Залогиниться  с логин/пароль НЕсуществующего юзера
         Ожидание: Ошибка юзер не найден. Сообщение:'Error'
         """
-        open_start_page.log_in("asdksd@jax.com", "sjakd222")
+        open_start_page.log_in(random_user)
         self.log.info("Non existent login/password added")
         open_start_page.is_displayed_login_message_alert()
         self.log.info("'Log in Alert' message  is correct. test_log_in_with_no_exist_user completed successfully")

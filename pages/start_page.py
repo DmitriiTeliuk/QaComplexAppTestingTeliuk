@@ -9,11 +9,11 @@ class StartPage(BasePage):
         super().__init__(driver)
         self.constance = StartPageConst()
 
-    def log_in(self, user_name, user_password):
+    def log_in(self, user):
         from pages.main_page import MainPage
-        self.fill_field(By.XPATH, self.constance.FIELD_SIGN_IN_USER_NAME_XPATH, some_value=user_name)
+        self.fill_field(By.XPATH, self.constance.FIELD_SIGN_IN_USER_NAME_XPATH, some_value=user.user_name)
         self.log.info("'user name' field filled")
-        self.fill_field(By.XPATH, self.constance.FIELD_SIGN_IN_USER_PASSWORD_XPATH, some_value=user_password)
+        self.fill_field(By.XPATH, self.constance.FIELD_SIGN_IN_USER_PASSWORD_XPATH, some_value=user.user_password)
         self.log.info("'user password' field filled")
         sign_in_button = self.wait_until_find_visible_and_clickable(by=By.XPATH,
                                                                     value=self.constance.BUTTON_SIGN_IN_XPATH)
@@ -21,13 +21,13 @@ class StartPage(BasePage):
         self.log.info("'Log in' button clicked")
         return MainPage(self.driver)
 
-    def reg_new_user(self, user_name, user_email, user_password):
+    def reg_new_user(self, user):
         from pages.main_page import MainPage
-        self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_NAME_XPATH, some_value=user_name)
+        self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_NAME_XPATH, some_value=user.user_name)
         self.log.info("'new_user name' field filled")
-        self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_EMAIL_XPATH, some_value=user_email)
+        self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_EMAIL_XPATH, some_value=user.user_mail)
         self.log.info("'new_user email' field filled")
-        self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_PASSWORD_XPATH, some_value=user_password)
+        self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_PASSWORD_XPATH, some_value=user.user_password)
         self.log.info("'new_user password' field filled")
         self.sign_up_button_click(1)
         self.log.info("'sign up' button clicked")

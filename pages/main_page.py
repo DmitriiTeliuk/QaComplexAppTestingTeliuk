@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-
 from constance.main_page import MainPageConst
 from pages.base_page import BasePage
 from pages.start_page import StartPage
