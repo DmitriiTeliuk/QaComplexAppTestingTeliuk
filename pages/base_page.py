@@ -20,5 +20,5 @@ class BasePage:
         return self.wait.until(EC.presence_of_element_located(locator=(by, value)))
 
     def wait_until_find_visible_and_clickable(self, by, value):
-        element = self.wait_until_find_element(by, value)
+        self.wait_until_find_element(by, value)
         return self.wait.until(EC.element_to_be_clickable((by, value)))

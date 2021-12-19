@@ -34,9 +34,6 @@ class TestStartPage(BaseTest):
         main_page.log_out()
         return random_user
 
-    def random_num(self):
-        return str(random.choice(range(11111, 99999)))
-
     def test_new_reg(self, open_start_page, random_user):
         """ 1.Загрузить страницу
             2.Ввести имя нового юзера
@@ -91,7 +88,7 @@ class TestStartPage(BaseTest):
         self.log.info("invalid name added to new_user name field")
         name_alert = open_start_page.get_new_user_name_field_alert()
         assert name_alert == "Username can only contain letters and numbers."
-        self.log.info("'Name Alert' message  is correct/ test_reg_user_name_validation_message_2 completed successfully")
+        self.log.info("'Name Alert' message  is correct test_reg_user_name_validation_message_2 completed successfully")
 
     def test_log_in_with_no_exist_user(self, open_start_page, random_user):
         """
