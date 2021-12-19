@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
-from QaComplexAppTestingTeliuk.constance.start_page import StartPageConst
-from QaComplexAppTestingTeliuk.pages.base_page import BasePage
-from QaComplexAppTestingTeliuk.pages.decor import wait_until_okk
+from constance.start_page import StartPageConst
+from pages.base_page import BasePage
+from pages.decor import wait_until_okk
 
 
 class StartPage(BasePage):
@@ -10,7 +10,7 @@ class StartPage(BasePage):
         self.constance = StartPageConst()
 
     def log_in(self, user_name, user_password):
-        from QaComplexAppTestingTeliuk.pages.main_page import MainPage
+        from pages.main_page import MainPage
         self.fill_field(By.XPATH, self.constance.FIELD_SIGN_IN_USER_NAME_XPATH, some_value=user_name)
         self.log.info("'user name' field filled")
         self.fill_field(By.XPATH, self.constance.FIELD_SIGN_IN_USER_PASSWORD_XPATH, some_value=user_password)
@@ -22,7 +22,7 @@ class StartPage(BasePage):
         return MainPage(self.driver)
 
     def reg_new_user(self, user_name, user_email, user_password):
-        from QaComplexAppTestingTeliuk.pages.main_page import MainPage
+        from pages.main_page import MainPage
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_NAME_XPATH, some_value=user_name)
         self.log.info("'new_user name' field filled")
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_EMAIL_XPATH, some_value=user_email)
@@ -69,7 +69,7 @@ class StartPage(BasePage):
         self.wait_until_find_visible_and_clickable(by=By.XPATH, value=self.constance.BUTTON_SIGN_UP_XPATH).click()
         if verify:
             # Wait until main_page button appears
-            from QaComplexAppTestingTeliuk.constance.main_page import MainPageConst
+            from constance.main_page import MainPageConst
             assert self.wait_until_find_element(by=By.XPATH, value=MainPageConst.CREATE_POST_BUTTON_XPATH).is_displayed()
 
 
