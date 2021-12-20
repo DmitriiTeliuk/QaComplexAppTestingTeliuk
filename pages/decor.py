@@ -23,3 +23,15 @@ def wait_until_okk(timeout, period):
         return wrapper
 
     return decorator
+
+
+def new_logdecor(func):
+    """Creates logs"""
+
+    def wrapper(*args, **kwargs):
+        log = logging.getLogger("[NewLogger]")
+        result = func(*args, **kwargs)
+        log.info("%s", func.__doc__)
+        return result
+
+    return wrapper
