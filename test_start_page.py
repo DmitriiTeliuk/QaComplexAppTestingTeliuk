@@ -3,6 +3,7 @@ from selenium.webdriver.chrome import webdriver
 from constance.base import BaseConst
 from conftest import BaseTest
 from pages.data_for_tests import User
+from pages.decor import create_driver
 from pages.start_page import StartPage
 
 
@@ -10,7 +11,7 @@ class TestStartPage(BaseTest):
     @pytest.fixture(scope="function")
     def driver(self):
         """Create driver and close after tests"""
-        driver = webdriver.WebDriver()
+        driver = create_driver(browser=BaseConst.FIREFOX)
         # driver.implicitly_wait(1)
         yield driver
         driver.close()
