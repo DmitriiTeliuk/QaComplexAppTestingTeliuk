@@ -10,7 +10,7 @@ class TestStartPage(BaseTest):
     @pytest.fixture(scope="function")
     def driver(self):
         """Create driver and close after tests"""
-        driver = webdriver.WebDriver(executable_path=BaseConst.DRIVER_PATH)
+        driver = webdriver.WebDriver()
         # driver.implicitly_wait(1)
         yield driver
         driver.close()
