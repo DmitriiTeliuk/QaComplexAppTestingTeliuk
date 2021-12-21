@@ -29,7 +29,6 @@ class StartPage(BasePage):
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_NAME_XPATH, some_value=user.user_name)
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_EMAIL_XPATH, some_value=user.user_mail)
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_PASSWORD_XPATH, some_value=user.user_password)
-        sleep(1)
         self.sign_up_button_click(1)
         return MainPage(self.driver)
 

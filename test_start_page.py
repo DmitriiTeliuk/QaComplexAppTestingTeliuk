@@ -1,5 +1,4 @@
 import pytest
-from selenium.webdriver.chrome import webdriver
 from constance.base import BaseConst
 from conftest import BaseTest
 from pages.data_for_tests import User
