@@ -7,11 +7,12 @@ from pages.decor import create_driver
 from pages.start_page import StartPage
 
 
+@pytest.mark.parametrize("browser", [BaseConst.CHROME, BaseConst.FIREFOX])
 class TestStartPage(BaseTest):
     @pytest.fixture(scope="function")
-    def driver(self):
+    def driver(self, browser):
         """Create driver and close after tests"""
-        driver = create_driver(browser=BaseConst.FIREFOX)
+        driver = create_driver(browser=browser)
         # driver.implicitly_wait(1)
         yield driver
         driver.close()
