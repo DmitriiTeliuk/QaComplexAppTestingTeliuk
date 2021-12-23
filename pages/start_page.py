@@ -1,5 +1,3 @@
-from time import sleep
-
 from selenium.webdriver.common.by import By
 from constance.start_page import StartPageConst
 from pages.base_page import BasePage
@@ -24,7 +22,7 @@ class StartPage(BasePage):
 
     @new_logdecor
     def reg_new_user(self, user):
-        """Register new user and click Sign up button"""
+        """New user is registered"""
         from pages.main_page import MainPage
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_NAME_XPATH, some_value=user.user_name)
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_EMAIL_XPATH, some_value=user.user_mail)
