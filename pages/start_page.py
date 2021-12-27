@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
-from constance.start_page import StartPageConst
+from constants.start_page import StartPageConst
 from pages.base_page import BasePage
 from pages.decor import wait_until_okk, new_logdecor
+
 
 
 class StartPage(BasePage):
@@ -12,23 +13,23 @@ class StartPage(BasePage):
     @new_logdecor
     def log_in(self, user):
         """Try to Log in"""
-        from pages.main_page import MainPage
+        from pages.header import Header
         self.fill_field(By.XPATH, self.constance.FIELD_SIGN_IN_USER_NAME_XPATH, some_value=user.user_name)
         self.fill_field(By.XPATH, self.constance.FIELD_SIGN_IN_USER_PASSWORD_XPATH, some_value=user.user_password)
         sign_in_button = self.wait_until_find_visible_and_clickable(by=By.XPATH,
                                                                     value=self.constance.BUTTON_SIGN_IN_XPATH)
         sign_in_button.click()
-        return MainPage(self.driver)
+        return Header(self.driver)
 
     @new_logdecor
     def reg_new_user(self, user):
         """New user is registered"""
-        from pages.main_page import MainPage
+        from pages.header import Header
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_NAME_XPATH, some_value=user.user_name)
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_EMAIL_XPATH, some_value=user.user_mail)
         self.fill_field(By.XPATH, self.constance.FIELD_NEW_USER_PASSWORD_XPATH, some_value=user.user_password)
         self.sign_up_button_click(1)
-        return MainPage(self.driver)
+        return Header(self.driver)
 
     @new_logdecor
     def fill_new_user_name(self, user_name):
@@ -75,6 +76,6 @@ class StartPage(BasePage):
         self.wait_until_find_visible_and_clickable(by=By.XPATH, value=self.constance.BUTTON_SIGN_UP_XPATH).click()
         if verify:
             # Wait until main_page button appears
-            from constance.main_page import MainPageConst
+            from constants.header import HeaderConst
             assert self.wait_until_find_element(by=By.XPATH,
-                                                value=MainPageConst.CREATE_POST_BUTTON_XPATH).is_displayed()
+                                                value=HeaderConst.CREATE_POST_BUTTON_XPATH).is_displayed()

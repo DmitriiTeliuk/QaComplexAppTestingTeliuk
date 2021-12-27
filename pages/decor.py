@@ -5,7 +5,7 @@ from time import sleep
 from selenium.webdriver.chrome import webdriver as chrome
 from selenium.webdriver.firefox import webdriver as firefox
 
-from constance.base import BaseConst
+from constants.base import BaseConst
 
 
 def wait_until_okk(timeout, period):

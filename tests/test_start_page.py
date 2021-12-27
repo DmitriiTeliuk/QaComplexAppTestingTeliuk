@@ -1,5 +1,5 @@
 import pytest
-from constance.base import BaseConst
+from constants.base import BaseConst
 from conftest import BaseTest
 from pages.data_for_tests import User
 from pages.decor import create_driver
@@ -8,27 +8,6 @@ from pages.start_page import StartPage
 
 @pytest.mark.parametrize("browser", [BaseConst.CHROME, BaseConst.FIREFOX])
 class TestStartPage(BaseTest):
-    @pytest.fixture(scope="function")
-    def driver(self, browser):
-        """Create driver and close after tests"""
-        driver = create_driver(browser=browser)
-        # driver.implicitly_wait(1)
-        yield driver
-        driver.close()
-
-    @pytest.fixture(scope="function")
-    def open_start_page(self, driver):
-        """Return start page"""
-        driver.get(BaseConst.URL)
-        return StartPage(driver)
-
-    @pytest.fixture(scope="function")
-    def random_user(self):
-        """Create random user data"""
-        user = User()
-        user.fill_user_data()
-        return user
-
     @pytest.fixture(scope="function")
     def reg_user_and_sign_out(self, open_start_page, random_user):
         """Register new user"""
