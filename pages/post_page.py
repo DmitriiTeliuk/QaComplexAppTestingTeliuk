@@ -1,9 +1,8 @@
 import datetime
-from time import sleep
-
 from selenium.webdriver.common.by import By
 from constants.post_page import PostPageConst
 from pages.base_page import BasePage
+from pages.decor import new_logdecor
 from pages.header import Header
 
 
@@ -13,7 +12,9 @@ class PostPage(BasePage):
         self.constants = PostPageConst()
         self.header = Header(self.driver)
 
+    @new_logdecor
     def verify_post(self, title, body, user):
+        """Verify post by Title + Body + Creator"""
         element_title = self.wait_until_find_element(by=By.XPATH, value=self.constants.POST_TITLE_XPATH)
         # check title
         assert element_title.text == title
