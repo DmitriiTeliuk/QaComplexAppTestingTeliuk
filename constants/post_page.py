@@ -5,3 +5,4 @@ class PostPageConst:
     POSTED_BY_XPATH = ".//p[@class='text-muted small mb-4']"
     POSTED_BY_MESSAGE = "Posted by {user_name} on {date}"
     POST_BODY_XPATH = ".//p[text()='{post_body}']"
+    POST_EDIT_BUTTON = ".//a[@class='text-primary mr-2']"

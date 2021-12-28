@@ -1,9 +1,6 @@
 import pytest
 from constants.base import BaseConst
 from conftest import BaseTest
-from pages.data_for_tests import User
-from pages.decor import create_driver
-from pages.start_page import StartPage
 
 
 @pytest.mark.parametrize("browser", [BaseConst.CHROME, BaseConst.FIREFOX])
