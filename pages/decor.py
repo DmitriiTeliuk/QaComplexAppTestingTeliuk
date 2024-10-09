@@ -26,7 +26,7 @@ def wait_until_okk(timeout, period):
                         sleep(period)
 
         return wrapper
-
+    # just test something
     return decorator
 
 
